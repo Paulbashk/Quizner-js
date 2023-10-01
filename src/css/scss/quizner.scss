@@ -1,0 +1,776 @@
+@import './fonts.scss';
+@import './variables.scss';
+
+.modal-quizner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 10000;
+  pointer-events: none;
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: $timeTrans;
+  transition-timing-function: linear;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__overlay {
+    position: absolute;
+    background-color: rgba(0, 0, 0, .4);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+  }
+
+  &__close {
+    position: absolute;
+    right: 32px;
+    top: 32px;
+    z-index: 2;
+
+    @media (max-width: $breakpoint-lg) {
+      right: 24px;
+      top: 24px;
+    }
+
+    @media (max-width: $breakpoint-md) {
+      right: 20px;
+      top: 16px;
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      path {
+        stroke: $mainColor;
+      }
+    }
+  }
+
+  &__close svg {
+    min-width: 48px;
+    max-width: 48px;
+    min-height: 48px;
+    max-height: 48px;
+
+    @media (max-width: $breakpoint-lg) {
+      min-width: 32px;
+      max-width: 32px;
+      min-height: 32px;
+      max-height: 32px;
+    }
+
+    @media (max-width: $breakpoint-md) {
+      min-width: 24px;
+      max-width: 24px;
+      min-height: 24px;
+      max-height: 24px;
+    }
+  }
+
+  &__close path {
+    transition-property: stroke;
+    transition-duration: $timeTrans;
+    transition-timing-function: linear;
+    stroke: #fff;
+
+    @media (max-width: $breakpoint-lg) {
+      stroke: #333;
+    }
+  }
+
+  &__content {
+    width: 1080px;
+    position: relative;
+    z-index: 1;
+
+    @media (max-width: 1130px) {
+      width: 960px;
+    }
+
+    @media (max-width: $breakpoint-lg) {
+      width: 768px;
+    }
+
+    @media (max-width: $breakpoint-md) {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__window {
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0px -5px 15px 0px rgba(0, 0, 0, 0.05);
+
+    @media (max-width: $breakpoint-md) {
+      border-radius: 0;
+    }
+  }
+
+  &__window--content {
+    width: 100%;
+    height: 698px;
+    position: relative;
+    z-index: 1;
+    opacity: 1;
+
+    @media (max-width: $breakpoint-md) {
+      height: 100%;
+    }
+  }
+
+  &__quizner {
+    height: 100%;
+
+    &.quizner {
+      .quizner__template.quizner__template--active {
+        pointer-events: none;
+      }
+    }
+  }
+
+  &--visible {
+    pointer-events: all;
+    opacity: 1;
+
+    .quizner.modal-quizner__quizner {
+      .quizner__template.quizner__template--active {
+        pointer-events: all;
+      }
+    }
+  }
+}
+
+.quizner {
+  display: flex;
+  flex-direction: column;
+  background-color: #fbffff;
+  padding: 10px;
+  border-radius: 16px;
+  border: 1px solid $mainGray;
+
+  * {
+    box-sizing: border-box;
+    font-family: $mainFamily;
+  }
+
+  &__head {
+    padding: 15px 40px;
+    border-bottom: 1px solid $mainGray;
+
+    @media (max-width: $breakpoint-md) {
+      padding: 15px 20px;
+    }
+  }
+
+  &__quiz-name {
+    font-size: 18px;
+    line-height: 26px;
+    font-weight: 700;
+  }
+
+  &__body,
+  &__templates,
+  &__template {
+    height: 100%;
+  }
+
+  &__body {
+    padding: 25px 40px;
+
+    @media (max-width: $breakpoint-md) {
+      padding: 25px 20px 64px 20px;
+    }
+  }
+
+  &__footer {
+    padding: 27px 40px;
+    border-top: 1px solid $mainGray;
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+
+    @media (max-width: $breakpoint-md) {
+      padding: 20px;
+      position: relative;
+    }
+
+    &--hidden {
+      display: none;
+    }
+  }
+
+  &__wrapper-buttons {
+    margin-left: auto;
+    display: flex;
+    align-content: center;
+    column-gap: 20px;
+
+    @media (max-width: $breakpoint-md) {
+      column-gap: 10px;
+    }
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    column-gap: 10px;
+    padding: 11px 20px;
+
+    i {
+      position: relative;
+      top: 1px;
+    }
+
+    span {
+      font-size: 18px;
+      user-select: none;
+      transition-property: color;
+      transition-duration: $timeTrans;
+      transition-timing-function: linear;
+
+      @media (max-width: $breakpoint-md) {
+        font-size: 16px;
+      }
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__button--next {
+    background: $mainColor;
+    box-shadow: 0px 0px 18px 0px $buttonNavigateBoxShadow;
+    transition-property: box-shadow;
+    transition-duration: $timeTrans;
+    transition-timing-function: linear;
+
+    span {
+      color: #fff;
+    }
+
+    &:hover {
+      box-shadow: 0px 0px 30px 0px $buttonNavigateBoxShadow;
+    }
+  }
+
+  &__button--prev {
+    border: 1px solid #E5E5E5;
+    transition-property: border-color;
+    transition-duration: $timeTrans;
+    transition-timing-function: linear;
+
+    span {
+      color: #AFAFAF;
+    }
+
+    &:hover {
+      border-color: $mainColor;
+
+      span {
+        color: $mainColor;
+      }
+
+      path {
+        stroke: $mainColor;
+      }
+    }
+  }
+
+  &__button--prev i,
+  &__button--next i {
+    display: block;
+
+    svg {
+      max-width: 11px;
+      max-height: 11px;
+      min-width: 11px;
+      min-height: 11px;
+    }
+
+    path {
+      transition-property: stroke;
+      transition-duration: $timeTrans;
+      transition-timing-function: linear;
+    }
+  }
+
+  &__button--next path {
+    stroke: #fff;
+  }
+
+  &__button--prev path {
+    stroke: #AFAFAF;
+  }
+
+  &__templates {
+    position: relative;
+  }
+
+  &__template {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition-property: opacity;
+    transition-duration: $timeTrans;
+    transition-timing-function: linear;
+
+    &--active {
+      opacity: 1;
+      pointer-events: all;
+      position: relative;
+    }
+  }
+
+  &__warning {
+    margin: 0 auto;
+    font-size: 16px;
+    color: $warningColor;
+    opacity: 0;
+    pointer-events: none;
+    transition-property: opacity;
+    transition-duration: $timeTrans;
+    transition-timing-function: linear;
+    user-select: none;
+
+    @media (max-width: $breakpoint-lg) {
+      padding: 0 16px;
+      text-align: center;
+    }
+
+    @media (max-width: $breakpoint-md) {
+      position: absolute;
+      top: -56px;
+      left: 20px;
+      text-align: left;
+      padding: 0;
+    }
+
+    &--active {
+      opacity: 1;
+      animation: transformSwing .7s linear;
+    }
+  }
+
+  &--mode-modal {
+    background-color: unset;
+    padding: 0;
+    border-radius: 0;
+    border: unset;
+
+    .quizner__quiz-name {
+      color: $mainGray;
+      font-weight: 400;
+    }
+
+    .quizner-tmpl-results {
+      min-height: unset;
+    }
+  }
+}
+
+.quizner-stages {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+
+  &__text {
+    font-size: 18px;
+    line-height: normal;
+    color: #000;
+  }
+
+  &__stages {
+    display: flex;
+    align-items: center;
+    column-gap: 3px;
+  }
+
+  &__stage {
+    display: block;
+    min-width: 10px;
+    min-height: 10px;
+    max-height: 10px;
+    max-width: 10px;
+    border-radius: 50%;
+    border: 1px solid $mainColor;
+
+    &--active {
+      background: linear-gradient(90deg, $mainColor 0%, rgba(255, 64, 178, 0.00) 120%);
+    }
+  }
+}
+
+.quizner-tmpl-selects {
+  &__wrapper-title {
+    margin-bottom: 34px;
+
+    @media (max-width: $breakpoint-md) {
+      margin-bottom: 24px;
+    }
+  }
+
+  &__title {
+    font-size: 36px;
+    line-height: 44px;
+    color: #050E2D;
+
+    @media (max-width: $breakpoint-lg) {
+      font-size: 28px;
+      line-height: 36px;
+    }
+
+    @media (max-width: $breakpoint-md) {
+      font-size: 20px;
+      line-height: 24px;
+    }
+  }
+
+  &__radio-questions,
+  &__checkbox-questions {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    overflow-y: auto;
+    min-height: 404px;
+    max-height: 404px;
+
+    @media (max-width: $breakpoint-lg) {
+      row-gap: 16px;
+    }
+
+    @media (max-width: $breakpoint-md) {
+      row-gap: 12px;
+      min-height: 356px;
+      max-height: 356px;
+    }
+  }
+}
+
+.quizner-tmpl-results {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  padding-bottom: 56px;
+  min-height: 516px;
+
+  @media (max-width: $breakpoint-md) {
+    row-gap: 8px;
+    padding-bottom: 32px;
+  }
+
+  &__text-result {
+    max-width: 701px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    padding: 34px 16px;
+    border-radius: 10px;
+    border: 2px solid rgba($mainColor, 0.40);
+
+    @media (max-width: $breakpoint-md) {
+      padding: 24px 12px;
+      max-width: unset;
+    }
+
+    span {
+      color: $mainColor;
+      text-align: center;
+      font-size: 36px;
+      font-weight: 600;
+
+      @media (max-width: $breakpoint-md) {
+        font-size: 24px;
+      }
+    }
+  }
+
+  &__wrapper-content {
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+  }
+
+  &__wrapper-content p {
+    margin: 0;
+    padding: 0;
+    color: rgba(0, 0, 0, 0.31);
+    font-size: 24px;
+
+    @media (max-width: $breakpoint-lg) {
+      font-size: 22px;
+    }
+
+    @media (max-width: $breakpoint-md) {
+      font-size: 20px;
+      position: relative;
+      bottom: -16px;
+    }
+  }
+}
+
+.wrapper-radio {
+  display: block;
+  position: relative;
+  width: 100%;
+
+  &:hover {
+    cursor: pointer;
+
+    .wrapper-radio__wrapper {
+      border-color: $mainColor;
+    }
+  }
+
+  &__radio {
+    display: none;
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: baseline;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    border: 1px solid $mainGray;
+    transition-property: border-color;
+    transition-duration: $timeTrans;
+    transition-timing-function: linear;
+    z-index: 0;
+    padding: 26px 16px;
+    column-gap: 12px;
+
+    @media (max-width: $breakpoint-md) {
+      column-gap: 8px;
+      padding: 16px 12px;
+    }
+  }
+
+  &:hover,
+  &__radio:checked+&__wrapper,
+  &__radio:focus+&__wrapper,
+  &__radio:not(:disabled):active+&__wrapper {
+    border-color: $mainColor;
+
+    .wrapper-radio__circle {
+      background-color: transparent;
+      border-color: $mainColor;
+      box-shadow: 0px 0px 8px 0px $checkButtonBoxShadow;
+
+      &::after {
+        background-color: $mainColor;
+        box-shadow: 0px 0px 6px 0px $checkButtonBoxShadow;
+      }
+    }
+  }
+
+  &__circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    min-height: 20px;
+    max-width: 20px;
+    max-height: 20px;
+    border-radius: 50%;
+    background-color: $mainGray;
+    border: 2px solid $mainGray;
+    box-shadow: unset;
+    transition-property: background-color, border-color, box-shadow;
+    transition-duration: $timeTrans;
+    transition-timing-function: linear;
+    position: relative;
+    top: 1.5px;
+
+    @media (max-width: $breakpoint-md) {
+      min-width: 16px;
+      min-height: 16px;
+      max-width: 16px;
+      max-height: 16px;
+      top: 1px;
+    }
+  }
+
+  &__circle::after {
+    content: '';
+    display: block;
+    min-width: 14px;
+    min-height: 14px;
+    max-width: 14px;
+    max-height: 14px;
+    background-color: $mainGray;
+    box-shadow: unset;
+    border-radius: 50%;
+    transition-property: background-color, box-shadow;
+    transition-duration: $timeTrans;
+    transition-timing-function: linear;
+
+    @media (max-width: $breakpoint-md) {
+      min-width: 10px;
+      min-height: 10px;
+      max-width: 10px;
+      max-height: 10px;
+    }
+  }
+
+  &__name {
+    font-size: 20px;
+    color: #000;
+    user-select: none;
+
+    @media (max-width: $breakpoint-md) {
+      font-size: 16px;
+    }
+  }
+}
+
+.wrapper-checkbox {
+  display: block;
+  position: relative;
+  width: 100%;
+
+  &:hover {
+    cursor: pointer;
+
+    .wrapper-checkbox__wrapper {
+      border-color: $mainColor;
+    }
+  }
+
+  &__input {
+    display: none;
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: baseline;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    border: 1px solid $mainGray;
+    transition-property: border-color;
+    transition-duration: $timeTrans;
+    transition-timing-function: linear;
+    z-index: 0;
+    padding: 26px 16px;
+    column-gap: 12px;
+
+    @media (max-width: $breakpoint-md) {
+      column-gap: 8px;
+      padding: 16px 12px;
+    }
+  }
+
+  &:hover,
+  &__input:checked+&__wrapper,
+  &__input:focus+&__wrapper,
+  &__input:not(:disabled):active+&__wrapper {
+    border-color: $mainColor;
+
+    .wrapper-checkbox__squard {
+      background-color: transparent;
+      border-color: $mainColor;
+      box-shadow: 0px 0px 8px 0px $checkButtonBoxShadow;
+
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__squard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    min-height: 20px;
+    max-width: 20px;
+    max-height: 20px;
+    background-color: $mainGray;
+    border: 2px solid $mainGray;
+    box-shadow: unset;
+    border-radius: 4px;
+    transition-property: background-color, border-color, box-shadow;
+    transition-duration: $timeTrans;
+    transition-timing-function: linear;
+    position: relative;
+    top: 1.5px;
+
+    @media (max-width: $breakpoint-md) {
+      min-width: 16px;
+      min-height: 16px;
+      max-width: 16px;
+      max-height: 16px;
+      top: 1px;
+    }
+  }
+
+  &__squard::after {
+    content: '';
+    display: block;
+    min-width: 16px;
+    min-height: 16px;
+    max-width: 16px;
+    max-height: 16px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24px' height='24px'%3E%3Cpath d='M 19.980469 5.9902344 A 1.0001 1.0001 0 0 0 19.292969 6.2929688 L 9 16.585938 L 5.7070312 13.292969 A 1.0001 1.0001 0 1 0 4.2929688 14.707031 L 8.2929688 18.707031 A 1.0001 1.0001 0 0 0 9.7070312 18.707031 L 20.707031 7.7070312 A 1.0001 1.0001 0 0 0 19.980469 5.9902344 z' fill='%230E5298'/%3E%3C/svg%3E");
+    background-size: 16px;
+    background-repeat: no-repeat;
+    background-position: top center;
+    transition-property: background-image, opacity;
+    transition-duration: $timeTrans;
+    transition-timing-function: linear;
+    opacity: 0;
+
+    @media (max-width: $breakpoint-md) {
+      min-width: 12px;
+      min-height: 12px;
+      max-width: 12px;
+      max-height: 12px;
+      background-size: 12px;
+    }
+  }
+
+  &__name {
+    font-size: 20px;
+    color: #333;
+    user-select: none;
+
+    @media (max-width: $breakpoint-md) {
+      font-size: 16px;
+    }
+  }
+}
+
+@keyframes transformSwing {
+  0% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-16px);
+  }
+
+  50% {
+    transform: translateX(0);
+  }
+
+  75% {
+    transform: translateX(16px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}

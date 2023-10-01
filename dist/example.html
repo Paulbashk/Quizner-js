@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quizner - квизы, тесты</title>
+    <link rel="stylesheet" href="css/quizner.min.css" />
+  </head>
+  <body>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Gilroy';
+      }
+
+      h1 {
+        font-size: 48px;
+        line-height: 40px;
+        margin-bottom: 0;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 40px 16px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 32px;
+        box-sizing: border-box;
+      }
+
+      #quizner {
+        width: 100%;
+      }
+
+      .btn-feedback {
+        margin: 16px auto 0;
+        max-width: 216px;
+      }
+
+      .wrapper-info {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        column-gap: 16px;
+      }
+
+      .wrapper-buttons {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        row-gap: 16px;
+        column-gap: 24px;
+      }
+
+      .btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #00309d;
+        color: #fff;
+        padding: 10px 24px;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 26px;
+        text-decoration: none;
+        border-radius: 8px;
+        opacity: 1;
+        transition-property: opacity;
+        transition-duration: 0.3s;
+        transition-timing-function: linear;
+      }
+      .btn:hover {
+        cursor: pointer;
+        opacity: 0.75;
+      }
+    </style>
+    <div class="container">
+      <h1>Quizner</h1>
+      <div class="wrapper-buttons">
+        <div class="btn btn-restart">Начать снова</div>
+        <div class="btn btn-destroy">Остановить</div>
+        <div class="btn btn-init">Инициализация</div>
+      </div>
+      <div id="quizner"></div>
+      <div class="wrapper-info">
+        <p><strong>Author:</strong> PaulBash</p>
+        <a href="https://t.me/CodeBash" target="_blank">My Telegram</a>
+        <a href="https://github.com/Paulbashk" target="_blank">My Github</a>
+        <a href="http://paulbash.ru/" target="_blank">My website</a>
+      </div>
+    </div>
+    <script src="js/quizner.min.js"></script>
+    <script>
+      const Quiz = new Quizner({
+        selector: '#quizner',
+        init: {
+          modal: false,
+          btn: false,
+        },
+        questions: [
+          {
+            question: 'Насколько трудолюбив Ваш сотрудник?',
+            type: 'radio',
+            required: true,
+            answers: [
+              {
+                name: 'Очень трудолюбив',
+              },
+              {
+                name: 'Достаточно трудолюбив',
+              },
+              {
+                name: 'Нормально трудолюбив',
+              },
+              {
+                name: 'Не слишком трудолюбив',
+              },
+              {
+                name: 'Совсем нетрудолюбив',
+              },
+            ],
+          },
+          {
+            question:
+              'Насколько эффективно Ваш сотрудник справляется со своей работой?',
+            type: 'radio',
+            required: true,
+            answers: [
+              {
+                name: 'Очень эффективно',
+              },
+              {
+                name: 'Скорее эффективно',
+              },
+              {
+                name: 'Средне',
+              },
+              {
+                name: 'Скорее неэффективно',
+              },
+              {
+                name: 'Совсем неэффективно',
+              },
+            ],
+          },
+          {
+            question: 'Соблюдает ли Ваш сотрудник сроки работ?',
+            type: 'radio',
+            required: true,
+            answers: [
+              {
+                name: 'Да, всегда',
+              },
+              {
+                name: 'Да, в большинстве случаев',
+              },
+              {
+                name: 'Да, в половине случаев',
+              },
+              {
+                name: 'Да, иногда',
+              },
+              {
+                name: 'Совсем нет',
+              },
+            ],
+          },
+          {
+            question: 'Как работает Ваш сотрудник в коллективе?',
+            type: 'radio',
+            required: true,
+            answers: [
+              {
+                name: 'Очень хорошо',
+              },
+              {
+                name: 'Хорошо',
+              },
+              {
+                name: 'Нейтрально',
+              },
+              {
+                name: 'Нехорошо',
+              },
+              {
+                name: 'Очень плохо',
+              },
+            ],
+          },
+          {
+            question:
+              'Насколько принимает Ваш сотрудник свою долю ответственности за результат?',
+            type: 'radio',
+            required: true,
+            answers: [
+              {
+                name: 'Очень хорошо',
+              },
+              {
+                name: 'Хорошо',
+              },
+              {
+                name: 'Нейтрально',
+              },
+              {
+                name: 'Нехорошо',
+              },
+              {
+                name: 'Очень плохо',
+              },
+            ],
+          },
+          {
+            question: 'Насколько быстро реагирует Ваш сотрудник на требования?',
+            type: 'radio',
+            required: true,
+            answers: [
+              {
+                name: 'Очень быстро',
+              },
+              {
+                name: 'Быстро',
+              },
+              {
+                name: 'Скорее быстро',
+              },
+              {
+                name: 'Скорее медленно',
+              },
+              {
+                name: 'Медленно',
+              },
+              {
+                name: 'Он совсем не отвечает на запросы',
+              },
+            ],
+          },
+          {
+            question:
+              'Насколько хорошо справляется Ваш сотрудник с критикой своей работы?',
+            type: 'radio',
+            required: true,
+            answers: [
+              {
+                name: 'Очень хорошо',
+              },
+              {
+                name: 'Хорошо',
+              },
+              {
+                name: 'Нормально',
+              },
+              {
+                name: 'Плохо',
+              },
+              {
+                name: 'Очень плохо',
+              },
+            ],
+          },
+          {
+            question:
+              'Как быстро успевает Ваш сотрудник адаптироваться к меняющимся приоритетам?',
+            type: 'radio',
+            required: true,
+            answers: [
+              {
+                name: 'Очень быстро',
+              },
+              {
+                name: 'Быстро',
+              },
+              {
+                name: 'Скорее быстро',
+              },
+              {
+                name: 'Скорее медленно',
+              },
+              {
+                name: 'Медленно',
+              },
+              {
+                name: 'Очень медленно',
+              },
+            ],
+          },
+          {
+            question:
+              'Насколько хорошо Ваш сотрудник информирован о целях компании?',
+            type: 'radio',
+            required: true,
+            answers: [
+              {
+                name: 'Очень хорошо',
+              },
+              {
+                name: 'Хорошо',
+              },
+              {
+                name: 'Достаточно',
+              },
+              {
+                name: 'Не слишком хорошо',
+              },
+              {
+                name: 'Недостаточно',
+              },
+              {
+                name: 'Он совсем не информирован',
+              },
+            ],
+          },
+        ],
+        results: [
+          {
+            ball: 0,
+            title:
+              'Квиз любой сложности на Ваш сайт <a class="btn btn-feedback" target="_blank" href="https://t.me/CodeBash">@CodeBash</a>',
+          },
+        ],
+      })
+
+      document
+        .querySelector('.btn-restart')
+        .addEventListener('click', (event) => Quiz.restart())
+
+      document
+        .querySelector('.btn-destroy')
+        .addEventListener('click', (event) => Quiz.destroy())
+
+      document
+        .querySelector('.btn-init')
+        .addEventListener('click', (event) => Quiz.init())
+    </script>
+  </body>
+</html>

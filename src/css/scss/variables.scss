@@ -1,0 +1,19 @@
+$mainFamily: 'Gilroy';
+
+// COLORS
+$mainColor: #0E5298;
+$mainGray: #E0E0E0;
+$buttonNavigateBoxShadow: rgba($mainColor, 0.59);
+$checkButtonBoxShadow: rgba($mainColor, 0.79);
+$warningColor: #FE0808;
+
+// Анимации
+$timeTrans: .3s;
+
+// BREAKPOINTS
+$breakpoint-xl: 1200px;
+$breakpoint-lg: 992px;
+$breakpoint-md: 768px;
+$breakpoint-sm: 576px;
+$breakpoint-xsm: 320px;
+$breakpoint-alternative-xsm: 300px;
