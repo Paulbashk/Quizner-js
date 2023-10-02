@@ -480,3 +480,7 @@ ____
 Методы `restart(), destroy(), saveStateQuestions(), getStateQuestionAnswer(name), isStateAnswerResults(), isStateQuestionAnswer(id), getStateQuestionSelected(id), calcResultsBall(), calcMaxBalls(), calcCompareBall(ball), getSelectedAnswers(), formatValue(value),
 setWarning(state, content), setModal(state), setHiddenFooter(state), setPaginationText(id), setPaginationBullets(id), setQuestion(id), setPositionQuestion(action), getQuestionTypeObject(name), getQuestionDefaultBall(id), getAnswerTypes(), getTemplates(), ` 
 вернут `false` если квиз не был инициализирован в момент вызова метода.
+
+____
+
+## События
