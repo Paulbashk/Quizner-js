@@ -382,6 +382,68 @@ ____
 
 ____
 
+## Свойства
+
+### Quizner.container => `HTMLElement, null`
+Возвращает элемент контейнера квиза или модального окна, если в опции `init` свойство `modal` равно `true`
+
+### Quizner.openButtons => `array`
+Возвращает элементы кнопкок, отвечающие за отображение квиза или модального окна с квизом
+
+### Quizner.closeButtons => `array`
+Возвращает элементы кнопок, отвечающие за сокрытие модального окна с квизом
+
+### Quizner.modal => `array`
+Возвращает элемент контейнера модального окна, если в опции `init` свойство `modal` равно `true`
+
+### Quizner.templates => `NodeList`
+Возвращает все элементы шаблонов, находящиеся в контейнере квиза
+
+### Quizner.template => `HTMLElement`
+Возвращает текущий активный элемент шаблона
+
+### Quizner.footer => `HTMLElement`
+Возвращает элемент подвала квиза
+
+### Quizner.pagination => `HTMLElement`
+Возвращает элемент контейнера пагинации квиза
+
+### Quizner.paginationText => `HTMLElement`
+Возвращает элемент текста пагинации квиза
+
+### Quizner.paginationBullets => `NodeList`
+Возвращает элементы пагинации квиза
+
+### Quizner.warning => `HTMLElement`
+Возвращает элемент пользовательского предупреждения квиза
+
+### Quizner.head => `HTMLElement`
+Возвращает элемент шапки квиза
+
+### Quizner.head => `object`
+Возвращает элементы навигации квиза в виде объекта `{ next: HTMLElement, prev: HTMLElement }`
+
+### Quizner.idModal => `string, null`
+Возвращает id элемента модального окна
+
+### Quizner.activeIndex => `number`
+Возвращает индекс текущего активного вопроса
+
+### Quizner.questionLength => `number`
+Возвращает число, равное количеству вопросов
+
+### Quizner.activeIndexTemplate => `number`
+Возвращает индекс текущего активного шаблона
+
+### Quizner.balls => `object`
+Возвращает объект, состоящий из максимального количества баллов в квизе исходя из результатов и текущее набранное `{ max: number, current: number }`
+
+### Quizner.questionState => `array`
+Возвращает состояние вопросов и выбранных ответов на момент вызова в виде массива, состоящего из объектов вопросов и ответов.
+
+
+____
+
 ## Методы
 
 ### Quizner.restart() => `boolean`
